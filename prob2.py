@@ -21,38 +21,3 @@ Constraints={
  'Var8': {'Var9': (9, 1)},
  'Var9': {}
 }
-
-
-'''
-if(self.constraints[var1][var2][1]==0):
-                        domaintoremove = range(assignment[var1]+self.constraints[var1][var2][0],self.variables[var1][-1]+1)
-                        if var2 not in removeddomains and domaintoremove[0]>0:
-                            removeddomains[var2] = domaintoremove
-
-                        removeddomains[var2] = range(
-                                min(removeddomains[var2][0], domaintoremove[0]),
-                                max(removeddomains[var2][-1], domaintoremove[-1]) + 1
-                            )
-                        
-
-                        nuovoDominio = list(self.variables[var2])
-                        nuovoDominio = list(filter(lambda x: x not in domaintoremove, nuovoDominio))
-                        if not len(nuovoDominio)==0:
-                            self.variables[var2] = range(nuovoDominio[0], nuovoDominio[-1] + 1)
-                    if(self.constraints[var1][var2][1]==2):
-                        domaintoremove = range(1, self.variables[var1][0] + self.constraints[var1][var2][0])
-                    
-                        if var2 not in removeddomains and domaintoremove[0]>0:
-                            removeddomains[var2] = domaintoremove
-                        else:
-                            removeddomains[var2] = range(
-                                min(removeddomains[var2][0], domaintoremove[0]),
-                                max(removeddomains[var2][-1], domaintoremove[-1]) + 1
-                            )
-                        
-
-                        nuovoDominio = list(self.variables[var2])
-                        nuovoDominio = list(filter(lambda x: x not in domaintoremove, nuovoDominio))
-                        if not len(nuovoDominio)==0:
-                            self.variables[var2] = range(nuovoDominio[0], nuovoDominio[-1] + 1)
-                            '''

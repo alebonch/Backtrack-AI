@@ -1,5 +1,6 @@
 import prob1
 import prob2
+import prob3
 import sys
 
 class JobSchedulingProblem:
@@ -46,7 +47,7 @@ class JobSchedulingProblem:
             for var2 in self.constraints[var1]:
                 if var2 not in assignment and var1 not in assignment:
                     
-                    if(self.constraints[var1][var2][1]==1) or (self.constraints[var1][var2][1]==1) :
+                    if(self.constraints[var1][var2][1]==1) or (self.constraints[var1][var2][1]==2) :
                         domaintoremove = range(1, self.variables[var1][0] + self.constraints[var1][var2][0])
                     
                         if var2 not in removeddomains and domaintoremove[0]>0:
@@ -102,7 +103,7 @@ class JobSchedulingProblem:
                     print(var2+" :")
                     print(self.variables[var2])
                 '''    
-                result = self.backtracking_search( new_assignment)
+                result = self.backtracking_search(new_assignment)
                 if result is None:
                     self.putRemovedDomains(tmp)
                 if result is not None:
@@ -118,6 +119,8 @@ def main(first_argument):
         csp = JobSchedulingProblem(prob1.variables,prob1.constraints)
     elif first_argument=='2':
        csp = JobSchedulingProblem(prob2.Variabili,prob2.Constraints)
+    elif first_argument=='3':
+       csp = JobSchedulingProblem(prob3.Variabili,prob3.constraints)
     #Risolvo il problema CSP
     soluzione = csp.backtracking_search()
     print(soluzione)    
@@ -128,8 +131,5 @@ if __name__ == "__main__":
         first_argument = sys.argv[1]
     
 
-    first_argument='1'
+    first_argument='3'
     main(first_argument)
-
-
-
