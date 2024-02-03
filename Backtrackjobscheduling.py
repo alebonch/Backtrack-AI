@@ -38,7 +38,15 @@ class JobSchedulingProblem:
         else:
             self.constraints[arg2][arg1]=(value,2)
 
-    
+    def printcons(self):
+        for var1 in self.constraints:
+            for var2 in self.constraints[var1]:
+                if self.constraints[var1][var2][1]==1:
+                    print(var1,"+",self.constraints[var1][var2][0],"≤",var2 )
+                if self.constraints[var1][var2][1]==2:
+                    print("(",var1,"+",self.constraints[var1][var2][0],"≤",var2,") or (",
+                          var2,"+",self.constraints[var1][var2][0],"≤",var1,")")
+
 
             
     def removeDomains(self, assignment, value,var):
@@ -121,6 +129,7 @@ def main(first_argument):
        csp = JobSchedulingProblem(prob2.Variabili,prob2.Constraints)
     elif first_argument=='3':
        csp = JobSchedulingProblem(prob3.Variabili,prob3.constraints)
+
     #Risolvo il problema CSP
     soluzione = csp.backtracking_search()
     print(soluzione)    
@@ -130,6 +139,4 @@ if __name__ == "__main__":
     if len(sys.argv)>1:
         first_argument = sys.argv[1]
     
-
-    first_argument='3'
     main(first_argument)
