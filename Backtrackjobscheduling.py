@@ -168,7 +168,8 @@ class JobSchedulingProblem:
             if solution[lastkey]==maxim:
                 best.append(solution)
         if len(best)==1:
-            print("La soluzione migliore è:"+best)
+            print("La soluzione migliore è:")
+            print(best)
         if len(best)>1:
             print("Lista delle soluzioni migliori:")
             for i in best:
@@ -191,8 +192,6 @@ def main(first_argument):
        csp = JobSchedulingProblem(prob2.Variabili,prob2.Constraints)
     elif first_argument=='3':
        csp = JobSchedulingProblem(prob3.Variabili,prob3.constraints)
-    elif first_argument=='4':
-       csp = JobSchedulingProblem(prob4.variables,prob4.constraints)
 
     #Risolvo il problema CSP
     csp.backtracking_search(richiesta)  
@@ -200,8 +199,7 @@ def main(first_argument):
     csp.findBestSolution()
 
 if __name__ == "__main__":
-    first_argument = '2'
+    #first_argument = '1'
     if len(sys.argv)>1:
-        first_argument = sys.argv[4]
-    
+        first_argument = sys.argv[1]
     main(first_argument)
