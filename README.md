@@ -1,7 +1,7 @@
 # Backtrack-MAC
 Project for Artificial Intelligence Exam @ Unifi - Backtracking Algorithm implementation and application to the Job Scheduling Problem.
 ##  What it does
-In this repository you will find a backtracking algorithm implementation and its application to solve the job scheduling problem found in §6.1.2 R&N 2021. The solver works recursively to find variables that satisfy the constraints that are given. To accellerate the process, after finding a suitable variable, the program reduces the domain of the other variables using the constraints to reduce the number of values that it needs to check using the Maintaining Arc Consistency approach. After finding the solutions, the program prints out the best solutions, which are the ones that minimize the maximum value of each solution.
+In this repository you will find a backtracking algorithm implementation and its application to solve the job scheduling problem found in §6.1.2 R&N 2021. The solver works recursively to find variables that satisfy the constraints that are given. To accelerate the process, after finding a suitable variable, the program reduces the domain of the other variables using the constraints to reduce the number of values that it needs to check using the Maintaining Arc Consistency approach. After finding the solutions, the program prints out the best solutions, which are the ones that minimize the maximum value of each solution.
 ## Files
 - **Backtrackjobscheduling.py** Main file, which contains both the class that works as the solver and the **main()** function.
 - **prob1.py** First instance of the problem, exaclty the one found at §6.1.2 R&N 2021
