@@ -126,9 +126,14 @@ class JobSchedulingProblem:
 
 
 
-    def backtracking_search(self, assignment={}):
+    def backtracking_search(self,richiesta, assignment={} ):
         if len(assignment) == len(self.variables):
-            return assignment
+            if assignment not in solutions:
+                solutions.append(assignment)
+                print(assignment)
+            if len(solutions)==richiesta:
+                return True
+            return None
         
 
         var_not_assigned = [var for var in self.variables if var not in assignment]
@@ -142,17 +147,43 @@ class JobSchedulingProblem:
                 tmp={}
                 
                 tmp.update(self.removeDomains(new_assignment, value, var))
-                result = self.backtracking_search(new_assignment)
+                result = self.backtracking_search(richiesta, new_assignment)
                 if result is None:
                     self.putRemovedDomains(tmp)
+                #non sarà mai non None
                 if result is not None:
-                    return result
+                    return True
         return None
+    
+    def findBestSolution(self):
+        best = []
+        chiavi=list(solutions[0].keys())
+        lastkey=chiavi[-1]
+        maxim=solutions[0][lastkey]
+        for solution in solutions:
+            if solution[lastkey]<maxim:
+                best = []
+                best.append(solution)
+                maxim=solution[lastkey]
+            if solution[lastkey]==maxim:
+                best.append(solution)
+        if len(best)==1:
+            print("La soluzione migliore è:"+best)
+        if len(best)>1:
+            print("Lista delle soluzioni migliori:")
+            for i in best:
+                print(i)    
+        return best
 
-
+solutions=[]
 def main(first_argument):
     #Prende in input l'istanza scelta
     #csp=istanzascelta
+
+    print("Inserire il numero di soluzioni richieste:")
+    richiesta =  input()
+    richiesta = int(richiesta)
+
     
     if first_argument=='1':
         csp = JobSchedulingProblem(prob1.variables,prob1.constraints)
@@ -164,11 +195,12 @@ def main(first_argument):
        csp = JobSchedulingProblem(prob4.variables,prob4.constraints)
 
     #Risolvo il problema CSP
-    soluzione = csp.backtracking_search()
-    print(soluzione)    
+    csp.backtracking_search(richiesta)  
+    #restituisco la soluzione migliore
+    csp.findBestSolution()
 
 if __name__ == "__main__":
-    first_argument = '3'
+    first_argument = '2'
     if len(sys.argv)>1:
         first_argument = sys.argv[4]
     
